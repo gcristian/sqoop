@@ -18,7 +18,7 @@
 
 package com.cloudera.sqoop.manager;
 
-import java.io.IOException;
+import java.io.IOException; 
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -27,6 +27,7 @@ import com.cloudera.sqoop.mapreduce.MySQLDumpImportJob;
 import com.cloudera.sqoop.mapreduce.MySQLExportJob;
 import com.cloudera.sqoop.util.ImportException;
 import com.cloudera.sqoop.util.ExportException;
+import com.cloudera.sqoop.manager.ImportJobContext;
 
 /**
  * Manages direct connections to MySQL databases
@@ -65,7 +66,7 @@ public class DirectMySQLManager extends MySQLManager {
 
     MySQLDumpImportJob importer = null;
     try {
-      importer = new MySQLDumpImportJob(options);
+    	importer = new MySQLDumpImportJob(options, context);
     } catch (ClassNotFoundException cnfe) {
       throw new IOException("Could not load required classes", cnfe);
     }

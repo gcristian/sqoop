@@ -18,7 +18,7 @@
 
 package com.cloudera.sqoop.manager;
 
-import java.io.BufferedReader;
+import java.io.BufferedReader; 
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -43,6 +43,7 @@ import com.cloudera.sqoop.util.ImportException;
 import com.cloudera.sqoop.util.JdbcUrl;
 import com.cloudera.sqoop.util.LoggingAsyncSink;
 import com.cloudera.sqoop.util.PerfCounters;
+import com.cloudera.sqoop.manager.ImportJobContext;
 
 /**
  * Manages direct dumps from Postgresql databases via psql COPY TO STDOUT
@@ -370,7 +371,7 @@ public class DirectPostgresqlManager extends PostgresqlManager {
 
       // This writer will be closed by AsyncSink.
       SplittableBufferedWriter w = DirectImportUtils.createHdfsSink(
-          options.getConf(), options, tableName);
+    		options.getConf(), options, context);
 
       // Actually start the psql dump.
       p = Runtime.getRuntime().exec(args.toArray(new String[0]),
